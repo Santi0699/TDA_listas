@@ -21,5 +21,7 @@ void delete_node2(node** head, t_elem_node v);
 int list_isorder(node* head);
 void list_delete_same_value(node** head);
 node* list_min_value(node* head);
-
+void node_add_first2(node** head, node* new_node);
+node* list_create_reverse(node* head);
+void list_invert(node** head);
 #endif
