@@ -163,5 +163,42 @@ void list_delete_same_value(node** head)
     }
 
     list_delete_same_value(&(*head)->next);
-    
 }
+
+node* list_min_value(node* head)
+{
+    node* min=head;
+
+    while(head!=NULL)
+    {
+        if(min->data < head->data)
+        {
+            min= head;
+        }
+        head=head->next;
+    }
+
+    return min;
+
+}
+
+node* list_min_value(node* head)
+{
+    if (head == NULL) return NULL;
+
+    node* min = head->next;
+    
+
+    while (head != NULL)
+    {
+        if (head->data < min->data)
+        {
+            min = head;
+        }
+        head = head->next;
+    }
+
+    return min;
+}
+
+//pepe
