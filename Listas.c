@@ -182,23 +182,4 @@ node* list_min_value(node* head)
 
 }
 
-node* list_min_value(node* head)
-{
-    if (head == NULL) return NULL;
-
-    node* min = head->next;
-    
-
-    while (head != NULL)
-    {
-        if (head->data < min->data)
-        {
-            min = head;
-        }
-        head = head->next;
-    }
-
-    return min;
-}
-
 //pepe
