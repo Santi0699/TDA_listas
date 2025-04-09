@@ -20,5 +20,6 @@ node* delete_node(node** head, t_elem_node v);
 void delete_node2(node** head, t_elem_node v);
 int list_isorder(node* head);
 void list_delete_same_value(node** head);
+node* list_min_value(node* head);
 
 #endif
