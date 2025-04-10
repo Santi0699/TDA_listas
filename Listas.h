@@ -25,5 +25,9 @@ void node_add_first2(node** head, node* new_node);
 node* list_create_reverse(node* head);
 void list_invert(node** head);
 void node_insert_in_order2(node** head, node* new_node);
-node* list_create_fusion_sorted(node* list1, node* list2);
+node* list_create_fusion_sorted(node** list1, node** list2);
+node* node_remove_front(node** head);
+node* node_insert_sort(node**h, node* new_node);
+node** node_find(node** head, t_elem_node e);
+
 #endif

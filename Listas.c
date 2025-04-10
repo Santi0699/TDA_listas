@@ -65,6 +65,17 @@ node** list_search(node** head, t_elem_node e)
     return head;
 }
 
+node* node_find(node** head, t_elem_node e)
+{
+    while((*head)!=NULL && (*head)->data<e)
+    {
+        head=&(*head)->next;
+    }
+    
+    return head;
+}
+
+
 node* node_add_first(node** head, node* new_node)
 {
     if(new_node!=NULL)
@@ -139,7 +150,30 @@ void node_insert_in_order2(node** head, node* new_node)
         new_node->next=(*head)->next;
         (*head)->next=new_node;
 
+}
 
+node* node_insert_sort(node**h, node* new_node)
+{
+    if(new_node!=NULL)
+    {
+    node** aux = node_find(h, new_node->data);
+    new_node->next = *aux;
+    *aux = new_node;
+    }
+    
+    return new_node;
+}
+
+node* node_remove_front(node** head)
+{
+    if(*head==NULL)return NULL;
+
+    node* aux= (*head)->next;
+    (*head)->next=NULL;
+    node* remove= (*head);
+    (*head)=aux;
+
+    return remove;
 }
 
 node* delete_node(node** head, t_elem_node v)
@@ -236,12 +270,12 @@ void list_invert(node** head)
 
     while (current != NULL)
     {
-        node* next = current->next; // Guardar siguiente
-        current->next = prev;       // Invertir puntero
-        prev = current;             // Avanzar prev
-        current = next;             // Avanzar current
+        node* next = current->next; 
+        current->next = prev;       
+        prev = current;             
+        current = next;             
     }
-    head=&prev; // Nuevo head de la lista invertida
+    head=&prev; 
 }
 
 //6.
@@ -274,23 +308,23 @@ void list_create_pair_impair(node* head, node** pair, node** impair)
 
 //8.
 
-node* list_create_fusion_sorted(node* list1, node* list2)
+node* list_create_fusion_sorted(node** list1, node** list2)
 {
-    if(list1 == NULL && list2==NULL) return NULL;
+    if(*list1 == NULL && *list2==NULL) return NULL;
 
     node* result=NULL;
-    while(list1!=NULL)
+    while((*list1)!=NULL)
     {
-        node* temp=node_new(list1->data);
-        node_insert_in_order2(&result,temp);
-        list1=list1->next;
+        //node* temp=node_new(list1->data);
+        node_insert_in_order2(&result,node_remove_front(list1));
+        //(*list1)=(*list1)->next;
     }
 
-    while (list2!=NULL)
+    while ((*list2)!=NULL)
     {
-        node* temp=node_new(list2->data);
-        node_insert_in_order2(&result, temp);
-        list2=list2->next;
+        //node* temp=node_new(list2->data);
+        node_insert_in_order2(&result, node_remove_front(list2));
+        //(*list2)=(*list2)->next;
     }
 
     return result;
