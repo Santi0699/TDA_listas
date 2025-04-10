@@ -4,7 +4,7 @@
 #include "stack_dynamic.h"
 
 typedef struct _stack_node {
-  t_elem value;
+  t_elem_stack value;
   struct _stack_node *next;
 } stack_node;
 
@@ -52,7 +52,7 @@ int stack_isfull(stack* s) {
   return (s->count == s->maxsize);
 }
 
-void push(stack* s, t_elem elem) {
+void push(stack* s, t_elem_stack elem) {
   if (stack_isfull(s)) {
     printf("Stack overflow\n");
     exit(1);
@@ -67,14 +67,14 @@ void push(stack* s, t_elem elem) {
   s->count++;
 }
 
-t_elem pop(stack* s) {
+t_elem_stack pop(stack* s) {
   if (stack_isempty(s)) {
     printf("Stack underflow\n");
     exit(1);
   }
 
   stack_node *aux = s->head;
-  t_elem elem = s->head->value;
+  t_elem_stack elem = s->head->value;
 
   s->head = s->head->next;
   s->count--;
@@ -84,7 +84,7 @@ t_elem pop(stack* s) {
   return elem;
 }
 
-t_elem top(stack* s) {
+t_elem_stack top(stack* s) {
   if (stack_isempty(s)) {
     printf("Stack underflow\n");
     exit(1);
@@ -93,7 +93,7 @@ t_elem top(stack* s) {
   return s->head->value;
 }
 
-void stack_destroy(stack* s, void elem_free(t_elem)){
+void stack_destroy(stack* s, void elem_free(t_elem_stack)){
   while (!stack_isempty(s)){
     elem_free(pop(s));
   }

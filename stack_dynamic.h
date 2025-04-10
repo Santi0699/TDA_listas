@@ -1,6 +1,9 @@
-#define t_elem void*
+#ifndef STACK_DYNAMIC_HEADER
+#define MI_HEADER
+#define t_elem_stack int
 
 typedef struct _stack stack;
+
 
 stack* stack_new(int maxsize);
 
@@ -10,14 +13,20 @@ int stack_getsize(stack* s);
 
 int stack_getmaxsize(stack* s);
 
-void push(stack* s, t_elem elem);
+void push(stack* s, t_elem_stack elem);
 
-t_elem pop(stack* s);
+t_elem_stack pop(stack* s);
 
-t_elem top(stack* s);
+t_elem_stack top(stack* s);
 
 int stack_isempty(stack* s);
 
 int stack_isfull(stack* s);
 
-void stack_destroy(stack* s, void elem_free(t_elem));
+void stack_destroy(stack* s, void elem_free(t_elem_stack));
+void stack_print(stack* s);
+void stack_add_random(stack* s, int cant_elem);
+void stack_print_recursive(stack* s);
+int stack_sum_elements(stack* s);
+
+#endif

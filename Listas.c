@@ -59,7 +59,7 @@ node** list_search(node** head, t_elem_node e)
 {
     while((*head)!=NULL && (*head)->data==e)
     {
-        *head=&(*head)->next;
+        *head=(*head)->next;
     }
     
     return head;

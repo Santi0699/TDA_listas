@@ -19,3 +19,10 @@ void enqueue (queue* q, t_queue_elem elem);
 t_queue_elem dequeue (queue* q);
 
 t_queue_elem peek (queue* q);
+
+void queue_add_random(queue* q, int cant_elem);
+
+void queue_print(queue* q);
+
+int queue_sum_elements(queue* q);
+
