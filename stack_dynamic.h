@@ -28,5 +28,6 @@ void stack_print(stack* s);
 void stack_add_random(stack* s, int cant_elem);
 void stack_print_recursive(stack* s);
 int stack_sum_elements(stack* s);
+stack* stack_copy(stack*s);
 
 #endif

@@ -4,7 +4,6 @@
 
 void stack_add_random(stack* s, int cant_elem)
 {
-    if(stack_isempty(s)) return;
     
     for(int i=0; i<cant_elem;i++)
     {
@@ -62,4 +61,25 @@ int stack_sum_elements(stack* s)
     stack_free(aux);
 
     return sum;
+}
+//14.
+stack* stack_copy(stack*s)
+{
+    stack* aux= stack_new(stack_getsize(s));
+    stack* result=stack_new(stack_getsize(s));
+    while(!stack_isempty(s))
+    {
+        push(aux,pop(s));
+    }
+
+    while(!stack_isempty(aux))
+    {
+        t_elem_stack value=top(aux);
+        push(result,value);
+        push(s,pop(aux));
+    }
+
+    stack_free(aux);
+
+    return result;
 }

@@ -1,4 +1,5 @@
 #include "queue_dynamic.h"
+#include "stack_dynamic.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -53,4 +54,42 @@ int queue_sum_elements(queue* q)
 
     return sum;
 
+}
+//13.
+void queue_invert(queue* q)
+{
+    stack* aux=stack_new(queue_getsize(q));
+    while(!queue_isempty(q))
+    {
+        push(aux,dequeue(q));
+    }
+
+    while(!stack_isempty(aux))
+    {
+        enqueue(q,pop(aux));
+    }
+    stack_free(aux);
+
+}
+//15.
+queue* queue_copy(queue* q)
+{
+    queue* aux = queue_new(queue_getsize(q));
+    queue* result = queue_new(queue_getsize(q));
+
+    while(!queue_isempty(q))
+    {
+        t_queue_elem value=peek(q);
+        enqueue(result,value);
+        enqueue(aux,dequeue(q));
+    }
+
+    while (!queue_isempty(aux))
+    {
+        enqueue(q,dequeue(aux));
+    }
+    
+    queue_free(aux);
+
+    return result;
 }

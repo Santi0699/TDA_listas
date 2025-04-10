@@ -26,3 +26,7 @@ void queue_print(queue* q);
 
 int queue_sum_elements(queue* q);
 
+void queue_invert(queue* q);
+
+queue* queue_copy(queue* q);
+

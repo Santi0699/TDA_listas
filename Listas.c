@@ -65,7 +65,7 @@ node** list_search(node** head, t_elem_node e)
     return head;
 }
 
-node* node_find(node** head, t_elem_node e)
+node** node_find(node** head, t_elem_node e)
 {
     while((*head)!=NULL && (*head)->data<e)
     {
@@ -290,19 +290,19 @@ int is_pair(t_elem_node value)
     return 0;
 }
 //7.
-void list_create_pair_impair(node* head, node** pair, node** impair)
+void list_create_pair_impair(node** head, node** pair, node** impair)
 {
-    while(head!=NULL)
+    while((*head)!=NULL)
     {
-        if(is_pair(head->data))
+        if(is_pair((*head)->data))
         {
-            node* new_pair=node_new(head->data);
+            node* new_pair=node_new((*head)->data);
             node_add_first2(pair,new_pair);
         }else{
-            node* new_impair=node_new(head->data);
+            node* new_impair=node_new((*head)->data);
             node_add_first2(impair,new_impair);
         }
-        head=head->next;
+        (*head)=(*head)->next;
     }
 }
 
