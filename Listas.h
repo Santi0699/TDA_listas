@@ -24,4 +24,6 @@ node* list_min_value(node* head);
 void node_add_first2(node** head, node* new_node);
 node* list_create_reverse(node* head);
 void list_invert(node** head);
+void node_insert_in_order2(node** head, node* new_node);
+node* list_create_fusion_sorted(node* list1, node* list2);
 #endif

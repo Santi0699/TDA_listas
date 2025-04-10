@@ -120,6 +120,28 @@ node* node_insert_in_order(node** head, node* new_node)
     return new_node;
 }
 
+void node_insert_in_order2(node** head, node* new_node)
+{
+
+    if (*head == NULL || new_node->data < (*head)->data)
+    {
+        new_node->next = *head;
+        *head = new_node;
+        return;
+    }
+
+    while((*head)!=NULL && (*head)->data < new_node->data)
+    {
+        head=&(*head)->next;
+    }
+
+
+        new_node->next=(*head)->next;
+        (*head)->next=new_node;
+
+
+}
+
 node* delete_node(node** head, t_elem_node v)
 {
     node** n = list_search(head,v);
@@ -255,4 +277,23 @@ void list_create_pair_impair(node* head, node** pair, node** impair)
 node* list_create_fusion_sorted(node* list1, node* list2)
 {
     if(list1 == NULL && list2==NULL) return NULL;
+
+    node* result=NULL;
+    while(list1!=NULL)
+    {
+        node* temp=node_new(list1->data);
+        node_insert_in_order2(&result,temp);
+        list1=list1->next;
+    }
+
+    while (list2!=NULL)
+    {
+        node* temp=node_new(list2->data);
+        node_insert_in_order2(&result, temp);
+        list2=list2->next;
+    }
+
+    return result;
 }
+
+//9.
