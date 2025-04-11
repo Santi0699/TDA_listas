@@ -350,7 +350,7 @@ int list_get_major_value(node* head)
 
 }
 
-t_elem_node list_prom(node* head)
+t_elem_node list_prom(t_elem_node_t head)
 {
     if(head==NULL) return 0;
 
