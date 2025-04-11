@@ -4,8 +4,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #define t_elem_node int
+#define t_elem_node_t node*
 
 typedef struct _node node;
+typedef struct _node_t node_t;
+
 
 node* node_new(t_elem_node data);
 t_elem_node node_free(node** a_node);
@@ -29,5 +32,8 @@ node* list_create_fusion_sorted(node** list1, node** list2);
 node* node_remove_front(node** head);
 node* node_insert_sort(node**h, node* new_node);
 node** node_find(node** head, t_elem_node e);
+int list_get_major_value(node* head);
+t_elem_node list_prom(node* head);
+node_t* list_get_major_prom(node_t* head);
 
 #endif

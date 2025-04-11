@@ -7,6 +7,12 @@ typedef struct _node
     
 }node;
 
+typedef struct _node_t
+{
+    t_elem_node_t data;
+    struct _node_t* next;
+}node_t;
+
 node* node_new(t_elem_node data)
 {
     node* r=(node*)malloc(sizeof(node));
@@ -331,3 +337,54 @@ node* list_create_fusion_sorted(node** list1, node** list2)
 }
 
 //9.
+int list_get_major_value(node* head)
+{
+    if(head==NULL)return 0;
+
+    node* aux=head;
+    int major=list_get_major_value(aux->next);
+
+    if(major<aux->data) major=aux->data;
+
+    return major;
+
+}
+
+t_elem_node list_prom(node* head)
+{
+    if(head==NULL) return 0;
+
+    node* aux=head;
+    t_elem_node sum=0;
+    int i=0;
+    t_elem_node prom=0;
+
+    while(aux!=NULL)
+    {
+        sum=sum+aux->data;
+        i++;
+        aux=aux->next;
+    }
+
+    prom=sum/i;
+
+    return prom;
+
+}
+
+
+node_t* list_get_major_prom(node_t* head)
+{
+    if(head==NULL)return NULL;
+
+    node_t* aux=head;
+    node_t* major=list_get_major_prom(aux->next);
+
+    if(list_prom(major->data) < list_prom(aux->data) )
+    {
+        major=aux;
+    }
+
+    return major;
+
+}
