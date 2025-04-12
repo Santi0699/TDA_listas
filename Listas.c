@@ -116,46 +116,47 @@ node* node_add_last(node** head, node* new_node)
     return new_node;
 }
 
-node* node_insert_in_order(node** head, node* new_node)
+void node_insert_in_order(node** head, node* new_node)
 {
-    if (new_node!=NULL)
-    {
-        while((*head)!= NULL && (*head)->next->data < new_node->data)
-        {
-            head= &(*head)->next;
-        }
+    if (new_node==NULL)return;
 
-        if((*head)->next->data < new_node->data)
-        {
-            node* aux = (*head)->next;
-            (*head)->next=new_node;
-            new_node->next=aux;
-            node_free(&aux);
-        }
+    if((*head)->next == NULL) (*head)->next=new_node;
+
+    node* current=(*head);
+    node* prev=NULL;
+
+    while(current!=NULL && new_node->data < current->data)
+    {
+        prev=current;
+        current=current->next;
     }
 
-    return new_node;
+    if(new_node->data < current->data)
+    {
+        new_node->next=current;
+        prev->next=new_node;
+    }
+
+    //return new_node;
 }
 
 void node_insert_in_order2(node** head, node* new_node)
 {
+    if (new_node == NULL) return;
 
-    if (*head == NULL || new_node->data < (*head)->data)
-    {
+    if (*head == NULL || new_node->data > (*head)->data) {
         new_node->next = *head;
         *head = new_node;
         return;
     }
 
-    while((*head)!=NULL && (*head)->data < new_node->data)
-    {
-        head=&(*head)->next;
+    node* current = *head;
+    while (current->next != NULL && current->next->data > new_node->data) {
+        current = current->next;
     }
 
-
-        new_node->next=(*head)->next;
-        (*head)->next=new_node;
-
+    new_node->next = current->next;
+    current->next = new_node;
 }
 
 node* node_insert_sort(node**h, node* new_node)
@@ -202,6 +203,7 @@ void delete_node2(node** head, t_elem_node v)
     
     node_free(&aux);
 }
+
 //1.
 int list_isorder(node* head)
 {
@@ -314,23 +316,17 @@ void list_create_pair_impair(node** head, node** pair, node** impair)
 
 //8.
 
-node* list_create_fusion_sorted(node** list1, node** list2)
-{
-    if(*list1 == NULL && *list2==NULL) return NULL;
+node* list_create_fusion_sorted(node** list1, node** list2) {
+    node* result = NULL;
 
-    node* result=NULL;
-    while((*list1)!=NULL)
-    {
-        //node* temp=node_new(list1->data);
-        node_insert_in_order2(&result,node_remove_front(list1));
-        //(*list1)=(*list1)->next;
+    while (*list1 != NULL) {
+        node* temp = node_remove_front(list1);
+        node_insert_in_order2(&result, temp);
     }
 
-    while ((*list2)!=NULL)
-    {
-        //node* temp=node_new(list2->data);
-        node_insert_in_order2(&result, node_remove_front(list2));
-        //(*list2)=(*list2)->next;
+    while (*list2 != NULL) {
+        node* temp = node_remove_front(list2);
+        node_insert_in_order2(&result, temp);
     }
 
     return result;
