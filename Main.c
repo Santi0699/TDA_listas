@@ -8,6 +8,7 @@
 
 int main()
 {
+    /*
     node* head=NULL;
     node*n1=node_new(1);
     node*n2=node_new(3);
@@ -42,17 +43,17 @@ int main()
     node* fusion=list_create_fusion_sorted(&head,&head1);
 
     list_print(fusion,int_print);
+*/
+    srand(time(NULL));
 
-//    srand(time(NULL));
-
-//    stack* pilita=stack_new(5);
-/*  
+   stack* pilita=stack_new(5);
+ 
     push(pilita,5);
     push(pilita,4);
     push(pilita,3);
     push(pilita,2);
     push(pilita,1);
-*/
+
 /*
     stack_add_random(pilita,5);
     stack_print(pilita);
@@ -63,6 +64,8 @@ int main()
     stack_print(pilita_copy);
 */
 
+    stack_print_recursive(pilita);
+    
 
 /*
     queue* filita=queue_new(5);

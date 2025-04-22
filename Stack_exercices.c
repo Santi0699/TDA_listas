@@ -36,7 +36,13 @@ void stack_print(stack* s)
 
 void stack_print_recursive(stack* s)
 {
-    //completar
+    if(stack_isempty(s))return;
+
+    t_elem_stack elem=pop(s);
+//    printf("|%d|\n",elem); imprime la lista bien
+    stack_print_recursive(s);
+    printf("|%d|\n",elem); //imprime la lista invertida
+    push(s,elem);
 }
 
 //12.a
@@ -83,3 +89,4 @@ stack* stack_copy(stack*s)
 
     return result;
 }
+
