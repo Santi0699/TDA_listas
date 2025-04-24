@@ -83,3 +83,54 @@ stack* stack_copy(stack*s)
 
     return result;
 }
+
+int stack_issort(stack*s)
+{
+    int sort=0;
+    if(!stack_isempty(s))
+    {
+        int size_s=stack_getsize(s);
+        stack* aux1=stack_new(size_s);
+        push(aux1,pop(s));
+        while(!stack_isempty(s)&&top(aux1)<top(s))
+        {
+            push(aux1,pop(s));
+        }
+        
+        if(stack_isempty(s)) sort=1;
+
+        while(!stack_isempty(aux1))
+        {
+            push(s,pop(aux1));
+        }
+
+        stack_free(aux1);
+        
+    }
+
+    return sort;
+    
+}
+
+void stack_insert_sort(stack* s, t_elem_stack value)
+{
+    if(!stack_isempty(s)||value>top(s))
+    {
+        push(s,value);
+    }else
+        {
+            t_elem_stack temp=pop(s);
+            stack_insert_sort(s,value);
+            push(s,temp);
+        }
+}
+
+void stack_sort(stack* s)
+{
+    if(!stack_isempty(s))
+    {
+        t_elem_stack value=pop(s);
+        stack_sort(s);
+        stack_insert_sort(s,value);
+    }
+}
