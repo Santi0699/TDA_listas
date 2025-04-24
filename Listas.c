@@ -545,3 +545,4 @@ int has_cycle(node* list)
 
     return has_cycle_recursive(list,list->next);
 }
+
