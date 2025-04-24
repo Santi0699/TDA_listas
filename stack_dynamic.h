@@ -29,5 +29,8 @@ void stack_add_random(stack* s, int cant_elem);
 void stack_print_recursive(stack* s);
 int stack_sum_elements(stack* s);
 stack* stack_copy(stack*s);
+int stack_issort(stack*s);
+void stack_insert_sort(stack* s, t_elem_stack value);
+void stack_sort(stack* s);
 
 #endif
