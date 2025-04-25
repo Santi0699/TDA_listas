@@ -253,3 +253,48 @@ t_elem_matrix matrix_determinant_recursive(Matrix* m) {
 
     return det;
 }
+
+Matrix* matrix_copy(Matrix*m)
+{
+    int row=matrix_rows(m);
+    int col=matrix_columns(m);
+
+    Matrix* result=matrix_new(row,col);
+
+    for(int i=0; i<row; i++)
+    {
+        for(int j=0; j<col; j++)
+        {
+            matrix_set(result,i,j,matrix_get(m,i,j));
+        }
+    }
+    
+    return result;
+
+}
+
+
+int matrix_is_symmetric(Matrix* m)
+{
+
+    int row=matrix_rows(m);
+    int col=matrix_columns(m);
+
+    int sym=1;
+
+
+        for(int i=0; i<row && sym==1; i++)
+        {
+            for(int j=i+1; j<col && sym==1; j++)
+            {
+                if(matrix_get(m,i,j)!=matrix_get(m,j,i))
+                {
+                    sym=0;
+                }
+            }
+        }    
+ 
+
+    return sym;
+}
+   

@@ -1,4 +1,4 @@
-#ifndef MI_HEADER_H
+#ifndef MATRIX_H
 #define MI_HEADER_H
 
 #include <stdio.h>
