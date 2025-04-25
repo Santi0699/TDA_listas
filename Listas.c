@@ -546,3 +546,12 @@ int has_cycle(node* list)
     return has_cycle_recursive(list,list->next);
 }
 
+void add_last(node** head, t_elem_node_t value)
+{
+    while(*head!=NULL)
+    {
+        head= &(*head)->next;
+    }
+
+    *head= value;
+}

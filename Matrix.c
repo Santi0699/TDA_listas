@@ -297,4 +297,4 @@ int matrix_is_symmetric(Matrix* m)
 
     return sym;
 }
-   
+
