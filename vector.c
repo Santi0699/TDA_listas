@@ -206,3 +206,57 @@ void vector_add_random2(vector* v)
     }
 
 }
+
+void vector_insert(vector* v, t_elem_vector value, int index)
+{
+    if (index < 0 || index > v->size) return 0;           // Índice fuera de rango
+    if (v->size >= v->maxsize) return 0;                  // Vector lleno
+
+    // Desplazar elementos hacia la derecha
+    for (int i = v->size; i > index; i--) {
+        v->a[i] = v->a[i - 1];
+    }
+
+    // Insertar el nuevo elemento
+    v->a[index] = value;
+    v->size++;
+
+}
+
+void vector_insert_order(vector* v, t_elem_vector value)
+{  
+    if(vector_isempty(v))
+    {
+       vector_insert(v,value,0); 
+    }else{
+        int i=0;
+        int size=vector_size(v);
+        while(i<size && value<vector_get(v,i))
+        {
+            i++;
+        }
+        vector_insert(v,value,i);
+    }
+
+}
+
+vector* vector_combine_order(vector* v1, vector* v2)
+{
+    int size1=vector_size(v1);
+    int size2=vector_size(v2);
+    vector* r=vector_init(size1+size2);
+    if(!vector_isempty(v1) && !vector_isempty(v2))
+    {
+        for(int i=0; i<size1; i++)
+        {
+            vector_insert_order(r,fraction_new(fraction_num(vector_get(v1,i),fraction_den(vector_get(v1,i)))),i);
+        }
+        
+        for(int j=0; j<size2; j++)
+        {
+            vector_insert_order(r,vector_get(v2,j));
+        }
+
+    }
+    return r;
+}
